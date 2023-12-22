@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div id="plotContainer">
+        <img id="plotImage" src="" alt="Plot Image" />
+    </div>
+    <div id="dateSelection">
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate" name="startDate">
+
+        <label for="endDate">End Date:</label>
+        <input type="date" id="endDate" name="endDate">
+
+        <button id="submitDates">Submit</button>
+    </div>
+    <div id="buttonContainer"> 
+        <button id="button1" class="buttonClass">Kilometers</button>
+        <button id="button2" class="buttonClass">Time (hours)</button>
+    </div>
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
