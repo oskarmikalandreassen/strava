@@ -66,8 +66,8 @@ button {
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-bottom: 10px; /* Add some spacing between buttons */
-    width: 150px; /* Added a fixed width for consistency */
+    margin-bottom: 10px; 
+    width: 150px; 
 }
 
 .buttonClass:hover {
@@ -77,4 +77,26 @@ button {
 .buttonClass:focus {
     outline: none;
     box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+}
+
+.shadow-effect {
+    position: relative;
+    top: 1px; 
+  }
+
+  #submitDates {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 4px;
+    padding: 8px 20px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    width: 150px;
+}
+
+#submitDates:hover {
+    background-color: #0056b3;
 }

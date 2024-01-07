@@ -11,9 +11,7 @@ app = Flask(__name__)
 
 df = pd.read_csv('app/activities.csv')
 
-
 selected_options = []
-
 
 def plot_weekly_activities(df, viewing_options):
     plt.figure(figsize=(12, 5))
@@ -35,8 +33,11 @@ def plot_weekly_activities(df, viewing_options):
 
     if 'kms' in viewing_options and 'time' in viewing_options:
         plt.ylabel('Distance (kms) / Moving Time (hours)', fontsize=14)
+        # TODO: finish code here
 
-    plt.title(str(df.iloc[0]['DateTime']).split(' ')[0] + ' - ' + str(df.iloc[-1]['DateTime']).split(' ')[0], fontsize=20)
+    # Title
+    # plt.title(str(df.iloc[0]['DateTime']).split(' ')[0] + ' - ' + str(df.iloc[-1]['DateTime']).split(' ')[0], fontsize=20)
+    
     plt.xlabel('Date', fontsize=14)
     plt.grid(axis='x')
     plt.tight_layout()
@@ -49,9 +50,15 @@ def plot_weekly_activities(df, viewing_options):
     plot_base64 = base64.b64encode(buffer.getvalue()).decode('utf-8')
     return plot_base64 
 
+
 @app.route('/')
 def index():
-    return render_template('index.html', dataframe=df.to_html())
+    plot_data = plot_weekly_activities(df, ['kms'])  
+    return render_template('index.html', dataframe=df.to_html(), default_plot=plot_data)
+
+""" @app.route('/')
+def index():
+    return render_template('index.html', dataframe=df.to_html()) """
 
 from datetime import datetime
 
@@ -71,7 +78,8 @@ def handle_kms_logic():
         except ValueError:
             return jsonify({'error': 'Invalid date format. Please use YYYY-MM-DD format'}), 400
     else:
-        return jsonify({'error': 'Please provide valid start and end dates'}), 400
+        default_plot_data = plot_weekly_activities(df, selected_options)
+        return jsonify({'plot': default_plot_data})
 
 @app.route('/time')
 def handle_time_logic():
